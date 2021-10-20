@@ -1,8 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { UserRegistrationService } from '../fetch-api-data.service';
-
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -25,11 +23,11 @@ export class UserLoginFormComponent implements OnInit {
   ngOnInit(): void { }
 
   loginUser(): void {
-    this.userRegistrationService.userLogin(this.userData).subscribe((response) => {
-      localStorage.setItem('username', response.user.username);
-      localStorage.setItem('token', response.token);
+    this.userRegistrationService.userLogin(this.userData).subscribe((result) => {
+      localStorage.setItem('username', result.user.username);
+      localStorage.setItem('token', result.token);
       this.dialogRef.close();
-      console.log(response);
+      console.log(result);
       this.snackBar.open('Login successful', 'OK', {
         duration: 2000
       });
