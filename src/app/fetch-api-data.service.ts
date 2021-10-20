@@ -9,7 +9,7 @@ import { catchError } from 'rxjs/internal/operators';
 import { map } from 'rxjs/operators';
 
 // global variables
-const apiUrl = 'https://filmopedia.herokuapp.com/';
+const apiUrl = 'https://myfilmdb.herokuapp.com';
 // Get token from local storage for requests
 
 
@@ -32,7 +32,7 @@ export class UserRegistrationService {
   public userRegistration(userDetails: any): Observable<any> {
     console.log(userDetails);
     return this.http.post
-      (apiUrl + 'users', userDetails)
+      (apiUrl + '/users', userDetails)
       .pipe(
         catchError(this.handleError)
       );
@@ -45,7 +45,7 @@ export class UserRegistrationService {
    */
   public userLogin(userDetails: any): Observable<any> {
     console.log(userDetails);
-    return this.http.post(apiUrl + 'login', userDetails)
+    return this.http.post(apiUrl + '/login', userDetails)
       .pipe(
         catchError(this.handleError)
       );

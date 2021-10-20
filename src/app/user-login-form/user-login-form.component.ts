@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { UserRegistrationService } from '../fetch-api-data.service';
+
+import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-user-login-form',
@@ -7,9 +13,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserLoginFormComponent implements OnInit {
 
-  constructor() { }
+  @Input() userData = { username: '', password: '' }
 
-  ngOnInit(): void {
+  constructor(
+    public userRegistrationService: UserRegistrationService,
+    public router: Router,
+    public dialogRef: MatDialogRef<UserLoginFormComponent>,
+    public snackBar: MatSnackBar
+  ) { }
+
+  ngOnInit(): void { }
+
+  loginUser(): void {
+    this.userRegistrationService.userLogin(this.userData).subscribe((response) => {
+      localStorage.setItem('username', response.user.username);
+      localStorage.setItem('token', response.token);
+      this.dialogRef.close();
+      console.log(response);
+      this.snackBar.open('Login successful', 'OK', {
+        duration: 2000
+      });
+    }, (result) => {
+      this.snackBar.open(result, 'OK', {
+        duration: 2000
+      })
+    })
   }
-
 }
