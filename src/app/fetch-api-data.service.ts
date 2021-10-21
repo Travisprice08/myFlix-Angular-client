@@ -8,11 +8,9 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/internal/operators';
 import { map } from 'rxjs/operators';
 
-// global variables
 const apiUrl = 'https://myfilmdb.herokuapp.com/';
-// Get token from local storage for requests
-
-
+const token = localStorage.getItem('token');
+const user = localStorage.getItem('user');
 
 @Injectable({
   providedIn: 'root'
