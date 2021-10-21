@@ -25,8 +25,7 @@ export class UserRegistrationService {
 
   public userRegistration(userDetails: any): Observable<any> {
     console.log(userDetails);
-    return this.http.post
-      (apiUrl + 'users', userDetails)
+    return this.http.post(apiUrl + 'users', userDetails)
       .pipe(
         catchError(this.handleError)
       );

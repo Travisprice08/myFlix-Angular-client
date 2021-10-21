@@ -23,11 +23,11 @@ export class UserLoginFormComponent implements OnInit {
   ngOnInit(): void { }
 
   loginUser(): void {
-    this.userRegistrationService.userLogin(this.userData).subscribe((result) => {
-      localStorage.setItem('username', result.user.username);
-      localStorage.setItem('token', result.token);
+    this.userRegistrationService.userLogin(this.userData).subscribe((response) => {
+      localStorage.setItem('username', response.user.username);
+      localStorage.setItem('token', response.token);
       this.dialogRef.close();
-      console.log(result);
+      console.log(response);
       this.snackBar.open('Login successful', 'OK', {
         duration: 2000
       });
