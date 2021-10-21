@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class UserLoginFormComponent implements OnInit {
 
-  @Input() userData = { username: '', password: '' }
+  @Input() userData = { Username: '', Password: '' }
 
   constructor(
     public userRegistrationService: UserRegistrationService,
@@ -24,7 +24,7 @@ export class UserLoginFormComponent implements OnInit {
 
   loginUser(): void {
     this.userRegistrationService.userLogin(this.userData).subscribe((response) => {
-      localStorage.setItem('username', response.user.username);
+      localStorage.setItem('username', response.user.Username);
       localStorage.setItem('token', response.token);
       this.dialogRef.close();
       console.log(response);
