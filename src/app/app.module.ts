@@ -25,7 +25,7 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { DirectorCardComponent } from './director-card/director-card.component';
-// import { GenreCardComponent } from './genre-card/genre-card.component';
+import { GenreCardComponent } from './genre-card/genre-card.component';
 // import { NavbarComponent } from './navbar/navbar.component';
 //Net yet implemented
 // import { FavoritesComponent } from './favorites/favorites.component';
@@ -37,7 +37,7 @@ const appRoutes: Routes = [
   { path: 'movies', component: MovieCardComponent },
   { path: 'users', component: ProfileViewComponent },
   { path: 'directors', component: DirectorCardComponent },
-  // { path: 'genres', component: GenreCardComponent },
+  { path: 'genres', component: GenreCardComponent },
   // Not yet Implemented.
   // { path: 'favorites', component: FavoritesComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
@@ -59,7 +59,7 @@ const appRoutes: Routes = [
     // SynopsisCardComponent,
     EditProfileComponent,
     DirectorCardComponent,
-    // GenreCardComponent,
+    GenreCardComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

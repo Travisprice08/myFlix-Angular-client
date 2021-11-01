@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DirectorCardComponent } from '../director-card/director-card.component';
-// import { GenreCardComponent } from '../genre-card/genre-card.component';
+import { GenreCardComponent } from '../genre-card/genre-card.component';
 import { UserRegistrationService } from '../fetch-api-data.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -18,6 +18,7 @@ const user = localStorage.getItem('Username');
 export class MovieCardComponent {
 
   movies: any[] = [];
+  genre: any[] = [];
 
   constructor(
     public userRegistrationService: UserRegistrationService,
@@ -28,6 +29,7 @@ export class MovieCardComponent {
 
   ngOnInit(): void {
     this.getMovies();
+    this.openGenre
   }
 
   getMovies(): void {
@@ -38,12 +40,12 @@ export class MovieCardComponent {
     });
   }
 
-  // openGenre(Name: string, Description: string): void {
-  //   this.dialog.open(GenreCardComponent, {
-  //     data: { Name, Description },
-  //     width: '500px'
-  //   });
-  // }
+  openGenre(Name: string, Description: string): void {
+    this.dialog.open(GenreCardComponent, {
+      data: { Name, Description },
+      width: '500px'
+    });
+  }
 
   // openGenre(Name: string, Description: string): void {
   //   this.userRegistrationService.getGenre().subscribe((resp: any) => {
