@@ -18,7 +18,8 @@ const user = localStorage.getItem('Username');
 export class MovieCardComponent {
 
   movies: any[] = [];
-  genre: any[] = [];
+  genres: any[] = [];
+  directors: any[] = [];
 
   constructor(
     public userRegistrationService: UserRegistrationService,
@@ -29,7 +30,6 @@ export class MovieCardComponent {
 
   ngOnInit(): void {
     this.getMovies();
-    this.openGenre
   }
 
   getMovies(): void {
@@ -47,27 +47,11 @@ export class MovieCardComponent {
     });
   }
 
-  // openGenre(Name: string, Description: string): void {
-  //   this.userRegistrationService.getGenre().subscribe((resp: any) => {
-  //     this.genre = resp;
-  //     console.log(this.genre);
-  //     return this.genre;
-  //   });
-  // }
-
   openDirector(Name: string, Bio: string, Birthday: number): void {
     this.dialog.open(DirectorCardComponent, {
       data: { Name, Bio, Birthday },
       width: '500px'
     });
   }
-
-  // openDirector(Name: string, Bio: string, Birthday: number): void {
-  //   this.userRegistrationService.getDirector().subscribe((resp: any) => {
-  //     this.director = resp;
-  //     console.log(this.director);
-  //     return this.director;
-  //   });
-  // }
 
 }

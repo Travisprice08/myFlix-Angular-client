@@ -72,7 +72,7 @@ export class UserRegistrationService {
 
   getDirector(): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + 'movies/Director/:name', {
+    return this.http.get(apiUrl + 'directors/id/:id', {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
