@@ -95,7 +95,7 @@ export class FavoritesComponent implements OnInit {
 
     //   openSynopsis(title:string, imageUrl:any, description:string, year:number): void {
     //     this.dialog.open(SynopsisCardComponent, {
-    //       data: {title, imageUrl, description, year},
+    //       data: {Title, imageUrl, Description},
     //       width: '500px'
     //     });
     //   }
