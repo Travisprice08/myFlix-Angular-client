@@ -26,6 +26,7 @@ import { ProfileViewComponent } from './profile-view/profile-view.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { DirectorCardComponent } from './director-card/director-card.component';
 import { GenreCardComponent } from './genre-card/genre-card.component';
+import { FavoritesComponent } from './favorites/favorites.component';
 // import { NavbarComponent } from './navbar/navbar.component';
 //Net yet implemented
 // import { FavoritesComponent } from './favorites/favorites.component';
@@ -60,6 +61,7 @@ const appRoutes: Routes = [
     EditProfileComponent,
     DirectorCardComponent,
     GenreCardComponent,
+    FavoritesComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

@@ -18,8 +18,9 @@ const user = localStorage.getItem('Username');
 export class MovieCardComponent {
 
   movies: any[] = [];
-  genres: any[] = [];
+  genres: any = [];
   directors: any[] = [];
+  favs: any[] = [];
 
   constructor(
     public userRegistrationService: UserRegistrationService,
@@ -30,6 +31,7 @@ export class MovieCardComponent {
 
   ngOnInit(): void {
     this.getMovies();
+    this.getUsersFavs();
   }
 
   getMovies(): void {
@@ -53,5 +55,46 @@ export class MovieCardComponent {
       width: '500px'
     });
   }
+
+  getUsersFavs(): void {
+    this.userRegistrationService.getUser(user).subscribe((resp: any) => {
+      this.favs = resp.favoritemovies;
+      console.log(this.getUsersFavs, 'favs');
+      return this.getUsersFavs;
+    })
+  }
+
+  addToUserFavorites(id: string, Title: string): void {
+    this.userRegistrationService.addToFavoriteMovies(id).subscribe((resp: any) => {
+      this.snackBar.open(`${Title} has been added to your favorites!`, 'OK', {
+        duration: 3000,
+      })
+      setTimeout(function () {
+        window.location.reload()
+      }, 3000);
+    });
+    return this.getUsersFavs();
+  }
+
+  removeFromUserFavorites(id: string, Title: string): void {
+    this.userRegistrationService.removeFromFavoriteMovies(id).subscribe((resp: any) => {
+      this.snackBar.open(`${Title} has beenr removed from your favorites.`, 'OK', {
+        duration: 3000,
+      })
+      setTimeout(function () {
+        window.location.reload()
+      }, 3000);
+    });
+    return this.getUsersFavs();
+  }
+
+  setFavStatus(id: any): any {
+    if (this.favs.includes(id)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 
 }
