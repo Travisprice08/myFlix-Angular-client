@@ -34,7 +34,6 @@ export class ProfileViewComponent implements OnInit {
     });
   }
 
-  // Not yet implemented
   openEditProfileDialog(): void {
     this.dialog.open(EditProfileComponent, {
       width: '500px'

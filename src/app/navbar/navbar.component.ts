@@ -1,64 +1,57 @@
-// import { Component, OnInit } from '@angular/core';
-// import { Router } from '@angular/router';
-// import { ProfileViewComponent } from '../profile-view/profile-view.component';
-// import { MatSnackBar } from '@angular/material/snack-bar';
-// import { MatDialog } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ProfileViewComponent } from '../profile-view/profile-view.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 
-// const username = localStorage.getItem('username')
+const username = localStorage.getItem('username')
 
-// @Component({
-//   selector: 'app-navbar',
-//   templateUrl: './navbar.component.html',
-//   styleUrls: ['./navbar.component.css']
-// })
-// export class NavbarComponent implements OnInit {
+@Component({
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    // When uncommented, an error appears about the loader not returning a string.
+    // styleUrls: ['./navbar.component.css']
+})
+export class NavbarComponent implements OnInit {
 
-//   constructor(public router: Router) { }
+    constructor(
+        public router: Router,
+        public snackBar: MatSnackBar,
+        public dialog: MatDialog,
+    ) { }
 
-//   ngOnInit(): void {
-//   }
+    ngOnInit(): void {
+    }
 
-//   toProfile(): void {
-//     this.router.navigate(['/profile'])
-//       .then(success => console.log('navigation success?', success))
-//       .catch(console.error);
-//   }
+    openUserProfile(): void {
+        this.dialog.open(ProfileViewComponent, {
+            width: '500px'
+        })
+        // .then(success => console.log('navigation success?', success))
+        // .catch(console.error);
+    }
 
-//   toMovies(): void {
-//     this.router.navigate(['/movies'])
-//       .then(success => console.log('navigation success?', success))
-//       .catch(console.error);
-//   }
+    openAllMovies(): void {
+        this.router.navigate(['/movies'])
+        // .then(success => console.log('navigation success?', success))
+        // .catch(console.error);
+    }
 
-//   // toActors(): void {
-//   //   this.router.navigate(['/actors'])
-//   //     .then(success => console.log('navigation success?', success))
-//   //     .catch(console.error);
-//   // }
+    openFavorites(): void {
+        this.router.navigate(['favorites'])
+    }
 
-//   // toDirectors(): void {
-//   //   this.router.navigate(['/directors'])
-//   //     .then(success => console.log('navigation success?', success))
-//   //     .catch(console.error);
-//   // }
+    backToHome(): void {
+        this.router.navigate(['/movies'])
+            .then(success => console.log('navigation success?', success))
+            .catch(console.error);
+    }
 
-//   // toGenres(): void {
-//   //   this.router.navigate(['/genres'])
-//   //     .then(success => console.log('navigation success?', success))
-//   //     .catch(console.error);
-//   // }
-
-//   backToHome(): void {
-//     this.router.navigate(['/movies'])
-//       .then(success => console.log('navigation success?', success))
-//       .catch(console.error);
-//   }
-
-//   logOut(): void {
-//     localStorage.removeItem('user');
-//     localStorage.removeItem('token');
-//     this.router.navigate(['/welcome'])
-//       .then(success => console.log('navigation success?', success))
-//       .catch(console.error);
-//   }
-// }
+    logOut(): void {
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        this.router.navigate(['/welcome'])
+            .then(success => console.log('navigation success?', success))
+            .catch(console.error);
+    }
+}

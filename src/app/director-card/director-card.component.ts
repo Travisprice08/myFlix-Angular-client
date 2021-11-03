@@ -9,7 +9,7 @@ import { UserRegistrationService } from '../fetch-api-data.service';
 })
 export class DirectorCardComponent implements OnInit {
 
-    director: any[] = [];
+    directors: any = [];
 
     constructor(
 
@@ -28,10 +28,10 @@ export class DirectorCardComponent implements OnInit {
     }
 
     getDirectorInfo(Name: string, Bio: string, Birthday: number): void {
-        this.userRegistrationService.getDirector().subscribe((response: any) => {
-            this.director = response;
-            console.log('director');
-            return this.director
+        this.userRegistrationService.getDirector(this.data.Name).subscribe((response: any) => {
+            this.directors = response;
+            console.log(this.directors);
+            return this.directors
 
         })
     }

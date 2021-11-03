@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserRegistrationService } from '../fetch-api-data.service';
 import { GenreCardComponent } from '../genre-card/genre-card.component';
 import { DirectorCardComponent } from '../director-card/director-card.component';
-//import { SynopsisCardComponent } from '../synopsis-card/synopsis-card.component';
-
+import { SynopsisComponent } from '../synopsis/synopsis.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -93,12 +92,12 @@ export class FavoritesComponent implements OnInit {
         });
     }
 
-    //   openSynopsis(title:string, imageUrl:any, description:string, year:number): void {
-    //     this.dialog.open(SynopsisCardComponent, {
-    //       data: {Title, imageUrl, Description},
-    //       width: '500px'
-    //     });
-    //   }
+    openSynopsis(Title: string, imageUrl: any, Description: string): void {
+        this.dialog.open(SynopsisComponent, {
+            data: { Title, imageUrl, Description },
+            width: '500px'
+        });
+    }
 
     setFavStatus(id: any): any {
         if (this.favs.includes(id)) {

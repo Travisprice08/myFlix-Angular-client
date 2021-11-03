@@ -70,9 +70,9 @@ export class UserRegistrationService {
 
   }
 
-  getDirector(): Observable<any> {
+  getDirector(name: string): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + 'directors/id/:id', {
+    return this.http.get(apiUrl + `directors/${name}`, {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
@@ -84,9 +84,9 @@ export class UserRegistrationService {
     )
   }
 
-  getGenre(): Observable<any> {
+  getGenre(Name: string): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + 'genres/id/:id', {
+    return this.http.get(apiUrl + `genres/${Name}`, {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
@@ -119,7 +119,7 @@ export class UserRegistrationService {
   getFavoriteMovies(): Observable<any> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
-    return this.http.get(apiUrl + `users/${username}/favoritemovies`,
+    return this.http.get(apiUrl + `users/${username}/FavoriteMovies`,
       {
         headers: new HttpHeaders(
           {
@@ -138,7 +138,7 @@ export class UserRegistrationService {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username')
     console.log(token, 'token from addToFavoriteMovies POST request')
-    return this.http.post(apiUrl + 'users/' + username + '/favoritemovies/' + id, null,
+    return this.http.post(apiUrl + 'users/' + username + '/Movies/' + id, null,
       {
         headers: new HttpHeaders(
           {
@@ -192,7 +192,7 @@ export class UserRegistrationService {
   removeFromFavoriteMovies(id: string): Observable<any> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username')
-    return this.http.delete(apiUrl + 'users/' + username + '/favoritemovies/' + id,
+    return this.http.delete(apiUrl + 'users/' + username + '/Movies/' + id,
       {
         headers: new HttpHeaders(
           {

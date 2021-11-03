@@ -4,8 +4,9 @@ import { GenreCardComponent } from '../genre-card/genre-card.component';
 import { UserRegistrationService } from '../fetch-api-data.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-// import { NavbarComponent } from '../navbar/navbar.component';
+import { NavbarComponent } from '../navbar/navbar.component';
 import { Router } from '@angular/router';
+import { SynopsisComponent } from '../synopsis/synopsis.component';
 
 const user = localStorage.getItem('Username');
 
@@ -19,8 +20,9 @@ export class MovieCardComponent {
 
   movies: any[] = [];
   genres: any = [];
-  directors: any[] = [];
+  directors: any = [];
   favs: any[] = [];
+  favorites: any = [];
 
   constructor(
     public userRegistrationService: UserRegistrationService,
@@ -56,17 +58,24 @@ export class MovieCardComponent {
     });
   }
 
+  openSynopsis(Title: string, imageUrl: any, Description: string): void {
+    this.dialog.open(SynopsisComponent, {
+      data: { Title, imageUrl, Description },
+      width: '500px'
+    });
+  }
+
   getUsersFavs(): void {
     this.userRegistrationService.getUser(user).subscribe((resp: any) => {
-      this.favs = resp.favoritemovies;
-      console.log(this.getUsersFavs, 'favs');
-      return this.getUsersFavs;
+      this.favs = resp.FavoriteMovies;
+      console.log(this.favs, 'favs');
+      return this.favs;
     })
   }
 
   addToUserFavorites(id: string, Title: string): void {
     this.userRegistrationService.addToFavoriteMovies(id).subscribe((resp: any) => {
-      this.snackBar.open(`${Title} has been added to your favorites!`, 'OK', {
+      this.snackBar.open(`${Title} has been added to your favorites.`, 'OK', {
         duration: 3000,
       })
       setTimeout(function () {
@@ -78,7 +87,7 @@ export class MovieCardComponent {
 
   removeFromUserFavorites(id: string, Title: string): void {
     this.userRegistrationService.removeFromFavoriteMovies(id).subscribe((resp: any) => {
-      this.snackBar.open(`${Title} has beenr removed from your favorites.`, 'OK', {
+      this.snackBar.open(`${Title} has been removed from your favorites.`, 'OK', {
         duration: 3000,
       })
       setTimeout(function () {

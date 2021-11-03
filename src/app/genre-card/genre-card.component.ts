@@ -9,7 +9,7 @@ import { UserRegistrationService } from '../fetch-api-data.service';
 })
 export class GenreCardComponent implements OnInit {
 
-    genres: any = {};
+    genres: any = [];
 
     constructor(
         public userRegistrationService: UserRegistrationService,
@@ -21,11 +21,11 @@ export class GenreCardComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.getGenreInfo
+        this.getGenreInfo();
     }
 
     getGenreInfo(): void {
-        this.userRegistrationService.getGenre().subscribe((response: any) => {
+        this.userRegistrationService.getGenre(this.data.Name).subscribe((response: any) => {
             this.genres = response;
             console.log(this.genres);
             return this.genres

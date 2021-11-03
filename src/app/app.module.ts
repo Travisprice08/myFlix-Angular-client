@@ -28,7 +28,7 @@ import { DirectorCardComponent } from './director-card/director-card.component';
 import { GenreCardComponent } from './genre-card/genre-card.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { SynopsisComponent } from './synopsis/synopsis.component';
-// import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -36,7 +36,7 @@ const appRoutes: Routes = [
   { path: 'users', component: ProfileViewComponent },
   { path: 'directors', component: DirectorCardComponent },
   { path: 'genres', component: GenreCardComponent },
-  // { path: 'favorites', component: FavoritesComponent },
+  { path: 'favorites', component: FavoritesComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
 ];
 
@@ -50,8 +50,7 @@ const appRoutes: Routes = [
     WelcomePageComponent,
     ProfileViewComponent,
     EditProfileComponent,
-    // Not yet implemented
-    // NavbarComponent,
+    NavbarComponent,
     EditProfileComponent,
     DirectorCardComponent,
     GenreCardComponent,
