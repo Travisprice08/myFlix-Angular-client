@@ -58,6 +58,15 @@ export class MovieCardComponent {
     });
   }
 
+  // openDirector(id: string): void {
+  //   this.userRegistrationService.getDirector(id).subscribe((resp: any) => {
+  //     this.directors = resp.director;
+  //     console.log(this.directors);
+  //     return this.directors;
+  //   });
+
+  // }
+
   openSynopsis(Title: string, imageUrl: any, Description: string): void {
     this.dialog.open(SynopsisComponent, {
       data: { Title, imageUrl, Description },

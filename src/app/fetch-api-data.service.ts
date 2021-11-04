@@ -70,9 +70,9 @@ export class UserRegistrationService {
 
   }
 
-  getDirector(name: string): Observable<any> {
+  getDirector(id: string): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + `directors/${name}`, {
+    return this.http.get(apiUrl + `directors/id/${id}`, {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
@@ -84,9 +84,9 @@ export class UserRegistrationService {
     )
   }
 
-  getGenre(Name: string): Observable<any> {
+  getGenre(id: string): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + `genres/${Name}`, {
+    return this.http.get(apiUrl + `genres/id/${id}`, {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
