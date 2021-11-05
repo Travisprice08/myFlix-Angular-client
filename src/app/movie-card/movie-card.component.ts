@@ -51,21 +51,21 @@ export class MovieCardComponent {
     });
   }
 
-  openDirector(Name: string, Bio: string, Birthday: number): void {
-    this.dialog.open(DirectorCardComponent, {
-      data: { Name, Bio, Birthday },
-      width: '500px'
-    });
-  }
-
-  // openDirector(id: string): void {
-  //   this.userRegistrationService.getDirector(id).subscribe((resp: any) => {
-  //     this.directors = resp.director;
-  //     console.log(this.directors);
-  //     return this.directors;
+  // openDirector(Name: string, Bio: string, Birthday: number): void {
+  //   this.dialog.open(DirectorCardComponent, {
+  //     data: { Name, Bio, Birthday },
+  //     width: '500px'
   //   });
-
   // }
+
+  openDirector(id: string): void {
+    this.userRegistrationService.getDirector(id).subscribe((resp: any) => {
+      this.directors = resp.data;
+      console.log(this.directors);
+      return this.directors;
+    });
+
+  }
 
   openSynopsis(Title: string, imageUrl: any, Description: string): void {
     this.dialog.open(SynopsisComponent, {

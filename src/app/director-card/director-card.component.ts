@@ -24,7 +24,7 @@ export class DirectorCardComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.getDirectorInfo
+        // this.getDirectorInfo
     }
 
     // getDirectorInfo(Name: string, Bio: string, Birthday: number): void {
@@ -36,14 +36,14 @@ export class DirectorCardComponent implements OnInit {
     //     })
     // }
 
-    getDirectorInfo(id: string): void {
-        this.userRegistrationService.getDirector(id).subscribe((resp: any) => {
-            this.directors = resp.director;
-            console.log(this.directors);
-            return this.directors;
-        });
+    // getDirectorInfo(id: string): void {
+    //     this.userRegistrationService.getDirector(id).subscribe((resp: any) => {
+    //         this.directors = resp.director;
+    //         console.log(this.directors);
+    //         return this.directors;
+    //     });
 
-    }
+    // }
 
 
 }
