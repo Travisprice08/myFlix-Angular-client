@@ -44,28 +44,28 @@ export class MovieCardComponent {
     });
   }
 
-  openGenre(Name: string, Description: string): void {
+  openGenre(id: string): void {
     this.dialog.open(GenreCardComponent, {
-      data: { Name, Description },
+      data: { id },
       width: '500px'
     });
   }
 
-  // openDirector(Name: string, Bio: string, Birthday: number): void {
-  //   this.dialog.open(DirectorCardComponent, {
-  //     data: { Name, Bio, Birthday },
-  //     width: '500px'
-  //   });
-  // }
-
   openDirector(id: string): void {
-    this.userRegistrationService.getDirector(id).subscribe((resp: any) => {
-      this.directors = resp.data;
-      console.log(this.directors);
-      return this.directors;
+    this.dialog.open(DirectorCardComponent, {
+      data: { id },
+      width: '500px'
     });
-
   }
+
+  // openDirector(id: string): void {
+  //   this.userRegistrationService.getDirector(id).subscribe((resp: any) => {
+  //     this.directors = resp.data;
+  //     console.log(resp, 'Resp data');
+  //     return this.directors;
+  //   });
+
+  // }
 
   openSynopsis(Title: string, imageUrl: any, Description: string): void {
     this.dialog.open(SynopsisComponent, {

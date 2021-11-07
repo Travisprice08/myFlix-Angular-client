@@ -15,17 +15,19 @@ export class GenreCardComponent implements OnInit {
         public userRegistrationService: UserRegistrationService,
         @Inject(MAT_DIALOG_DATA)
         public data: {
-            Name: string;
-            Description: string;
+            id: string;
+            // Name: string;
+            // Description: string;
         }
     ) { }
 
     ngOnInit(): void {
-        this.getGenreInfo();
+        this.getGenreInfo(this.data.id);
     }
 
-    getGenreInfo(): void {
-        this.userRegistrationService.getGenre(this.data.Name).subscribe((response: any) => {
+    getGenreInfo(id: string): void {
+        this.userRegistrationService.getGenre(id).subscribe((response: any) => {
+            console.log(response, 'Genre info')
             this.genres = response;
             console.log(this.genres);
             return this.genres
