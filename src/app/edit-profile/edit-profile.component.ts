@@ -12,6 +12,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 // Make sure to change this in other components
 export class EditProfileComponent implements OnInit {
 
+  username: any = {};
+
   @Input() userData = {
     Username: '',
     Password: '',
@@ -28,7 +30,6 @@ export class EditProfileComponent implements OnInit {
   ngOnInit(): void { }
 
   editProfile(): void {
-    // Check editUserProfile
     this.userRegistrationService.editUserProfile(this.userData).subscribe((res) => {
       this.dialogRef.close();
       localStorage.setItem('username', res.Username)

@@ -16,8 +16,6 @@ export class GenreCardComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA)
         public data: {
             id: string;
-            // Name: string;
-            // Description: string;
         }
     ) { }
 
@@ -29,7 +27,7 @@ export class GenreCardComponent implements OnInit {
         this.userRegistrationService.getGenre(id).subscribe((response: any) => {
             console.log(response, 'Genre info')
             this.genres = response;
-            console.log(this.genres);
+            // console.log(this.genres);
             return this.genres
         })
     }

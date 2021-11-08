@@ -9,8 +9,8 @@ import { catchError } from 'rxjs/internal/operators';
 import { map } from 'rxjs/operators';
 
 
-const token = localStorage.getItem('token');
-const user = localStorage.getItem('user');
+// const token = localStorage.getItem('token');
+// const user = localStorage.getItem('user');
 
 @Injectable({
   providedIn: 'root'
@@ -87,7 +87,7 @@ export class UserRegistrationService {
 
   getGenre(id: string): Observable<any> {
     const token = localStorage.getItem('token');
-    console.log(this.apiUrl, id);
+    // console.log(this.apiUrl, id);
     return this.http.get(this.apiUrl + `genres/id/${id}`, {
       headers: new HttpHeaders(
         {

@@ -18,9 +18,6 @@ export class DirectorCardComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA)
         public data: {
             id: string;
-            // Name: string,
-            // Bio: string,
-            // Birthday: number,
         }
     ) { }
 
@@ -28,19 +25,10 @@ export class DirectorCardComponent implements OnInit {
         this.getDirectorInfo(this.data.id);
     }
 
-    // getDirectorInfo(Name: string, Bio: string, Birthday: number): void {
-    //     this.userRegistrationService.getDirector(this.data.Name).subscribe((response: any) => {
-    //         this.directors = response;
-    //         console.log(this.directors);
-    //         return this.directors
-
-    //     })
-    // }
-
     getDirectorInfo(id: string): void {
         this.userRegistrationService.getDirector(id).subscribe((response: any) => {
             this.directors = response;
-            console.log(this.directors);
+            // console.log(this.directors);
             return this.directors;
         });
 

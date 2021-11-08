@@ -39,7 +39,7 @@ export class MovieCardComponent {
   getMovies(): void {
     this.userRegistrationService.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
-      console.log(this.movies);
+      // console.log(this.movies);
       return this.movies;
     });
   }
@@ -58,15 +58,6 @@ export class MovieCardComponent {
     });
   }
 
-  // openDirector(id: string): void {
-  //   this.userRegistrationService.getDirector(id).subscribe((resp: any) => {
-  //     this.directors = resp.data;
-  //     console.log(resp, 'Resp data');
-  //     return this.directors;
-  //   });
-
-  // }
-
   openSynopsis(Title: string, imageUrl: any, Description: string): void {
     this.dialog.open(SynopsisComponent, {
       data: { Title, imageUrl, Description },
@@ -77,7 +68,7 @@ export class MovieCardComponent {
   getUsersFavs(): void {
     this.userRegistrationService.getUser(user).subscribe((resp: any) => {
       this.favs = resp.FavoriteMovies;
-      console.log(this.favs, 'favs');
+      // console.log(this.favs, 'favs');
       return this.favs;
     })
   }
