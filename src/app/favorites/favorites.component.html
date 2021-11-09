@@ -10,21 +10,15 @@
             <img class="movie-img" src={{movie.imageUrl}} alt={{movie.Title}}>
         </mat-card-content>
         <mat-card-actions>
-            <button class='button-link' mat-button color='primary' (click)='openGenre(genres.Name, genres.Description)'>
+            <button class='button-link' mat-button color='primary' (click)='openGenre(movie.Genre)'>
                 Genre
             </button>
-            <button class='button-link' mat-button color='primary'
-                (click)='openDirector(movie.director.Name, movie.director.Bio, movie.director.Birthday)'>
+            <button class='button-link' mat-button color='primary' (click)='openDirector(movie.Director)'>
                 Director
             </button>
-            <!-- <button
-            class='button-link'
-                mat-button
-                color='primary'
-                (click)='openSynopsis(movie.title, movie.imageUrl, movie.description, movie.year)'
-            >
-            Synopsis
-            </button> -->
+            <button mat-button color='primary' (click)='openSynopsis(movie.Title, movie.imageUrl, movie.Description)'>
+                Synopsis
+            </button>
             <mat-icon *ngIf="!setFavStatus(movie._id)" (click)="addToUserFavorites(movie._id, movie.Title)"
                 class="favorite-button">favorite_border</mat-icon>
             <mat-icon *ngIf="setFavStatus(movie._id)" (click)="removeFromUserFavorites(movie._id, movie.Title)"

@@ -209,7 +209,7 @@ export class UserRegistrationService {
   // extract Response Data
   private extractResponseData(response: Response | Object): any {
     const body = response;
-    console.log(response);
+    // console.log(response);
     return body || {};
   }
 

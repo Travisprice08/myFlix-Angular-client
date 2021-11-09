@@ -5,6 +5,7 @@ import { DirectorCardComponent } from '../director-card/director-card.component'
 import { SynopsisComponent } from '../synopsis/synopsis.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 const user = localStorage.getItem('username');
 
@@ -20,9 +21,11 @@ export class FavoritesComponent implements OnInit {
     movies: any[] = [];
     favs: any[] = [];
     genres: any = [];
+    directors: any = [];
 
     constructor(
         public userRegistrationServices: UserRegistrationService,
+        public router: Router,
         public dialog: MatDialog,
         public snackBar: MatSnackBar,
     ) { }
@@ -30,29 +33,54 @@ export class FavoritesComponent implements OnInit {
     ngOnInit(): void {
         this.getMovies();
         this.getUsersFavs();
+
     }
 
     getMovies(): void {
         this.userRegistrationServices.getAllMovies().subscribe((resp: any) => {
             this.movies = resp;
-            console.log(this.movies);
+            // console.log(resp, 'fav movies');
             return this.filterFavorites();
+            // return this.movies
         })
     }
 
+    openGenre(id: string): void {
+        this.dialog.open(GenreCardComponent, {
+            data: { id },
+            width: '500px'
+        });
+    }
+
+    openDirector(id: string): void {
+        this.dialog.open(DirectorCardComponent, {
+            data: { id },
+            width: '500px'
+        });
+    }
+
+    openSynopsis(Title: string, imageUrl: any, Description: string): void {
+        this.dialog.open(SynopsisComponent, {
+            data: { Title, imageUrl, Description },
+            width: '500px'
+        });
+    }
+
+
     getUsersFavs(): void {
         this.userRegistrationServices.getUser(user).subscribe((resp: any) => {
-            this.favs = resp.favoritemovies;
-            console.log(this.favs, 'favs');
+            this.favs = resp.FavoriteMovies;
+            console.log(resp, 'favs');
             return this.favs;
         })
     }
 
     filterFavorites(): void {
-        this.movies.forEach((movie: any) => {
+        this.favs.forEach((movie: any) => {
             if (this.favs.includes(movie._id)) {
                 this.favorites.push(movie);
-            } console.log(this.favorites, 'favorites');
+            }
+            // console.log(this.favorites, 'favorites');
         });
         return this.favorites;
     }
@@ -76,27 +104,6 @@ export class FavoritesComponent implements OnInit {
             }, 3000);
         });
         return this.getUsersFavs();
-    }
-
-    openGenre(Name: string, Description: string): void {
-        this.dialog.open(GenreCardComponent, {
-            data: { Name, Description },
-            width: '500px'
-        });
-    }
-
-    openDirector(Name: string, Bio: string, Birthday: number): void {
-        this.dialog.open(DirectorCardComponent, {
-            data: { Name, Bio, Birthday },
-            width: '500px'
-        });
-    }
-
-    openSynopsis(Title: string, imageUrl: any, Description: string): void {
-        this.dialog.open(SynopsisComponent, {
-            data: { Title, imageUrl, Description },
-            width: '500px'
-        });
     }
 
     setFavStatus(id: any): any {
