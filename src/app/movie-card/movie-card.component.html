@@ -16,14 +16,14 @@
             <button mat-button color="primary" (click)='openSynopsis(movie.Title, movie.imageUrl, movie.Description)'>
                 Synopsis
             </button>
-            <mat-icon (click)="addToUserFavorites(movie._id, movie.Title)" class="favorite-button">favorite_border
+            <!-- <mat-icon (click)="addToUserFavorites(movie._id, movie.Title)" class="favorite-button">favorite_border
             </mat-icon>
             <mat-icon (click)="removeFromUserFavorites(movie._id, movie.Title)" class="favorite-button-active">favorite
-            </mat-icon>
-            <!-- <mat-icon *ngIf="!setFavStatus(movie._id)" (click)="addToUserFavorites(movie._id, movie.title)"
+            </mat-icon> -->
+            <mat-icon *ngIf="!setFavStatus(movie._id)" (click)="addToUserFavorites(movie._id, movie.Title)"
                 class="favorite-button">favorite_border</mat-icon>
-            <mat-icon *ngIf="setFavStatus(movie._id)" (click)="removeFromUserFavorites(movie._id, movie.title)"
-                class="favorite-button-active">favorite</mat-icon> -->
+            <mat-icon *ngIf="setFavStatus(movie._id)" (click)="removeFromUserFavorites(movie._id, movie.Title)"
+                class="favorite-button-active">favorite</mat-icon>
         </mat-card-actions>
     </mat-card>
 </div>

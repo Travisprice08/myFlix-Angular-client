@@ -18,8 +18,9 @@ export class FavoritesComponent implements OnInit {
 
     user: any = {};
     favorites: any = [];
-    movies: any[] = [];
+    favoriteMovies: any = [];
     favs: any[] = [];
+    movie: any[] = [];
     genres: any = [];
     directors: any = [];
 
@@ -35,18 +36,46 @@ export class FavoritesComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.getMovies();
         this.getUsersFavs();
+        // this.getMovies();
+        setTimeout(() => {
+            this.getMovies()
+        }, 1000);
 
     }
 
     getMovies(): void {
         this.userRegistrationServices.getAllMovies().subscribe((resp: any) => {
-            this.movies = resp;
-            // console.log(resp, 'fav movies');
+            this.favs = resp;
+            console.log(this.favs, 'all movies');
             return this.filterFavorites();
-            // return this.movies
+            // return this.movie
         })
+    }
+
+
+    getUsersFavs(): void {
+        this.userRegistrationServices.getUser(user).subscribe((resp: any) => {
+            this.favorites = resp.FavoriteMovies;
+            console.log(this.favorites, 'My favorites');
+            return this.favorites;
+        })
+    }
+
+    filterFavorites(): void {
+        console.log(this.favs, 'favs')
+        console.log(this.favorites, 'favorites')
+
+
+        this.favs.forEach((movie: any) => {
+            if (this.favorites.includes(movie._id)) {
+                this.favoriteMovies.push(movie);
+                console.log(movie)
+            }
+
+        });
+        console.log(this.favoriteMovies, 'filtered');
+        return this.favoriteMovies;
     }
 
     openGenre(id: string): void {
@@ -70,32 +99,13 @@ export class FavoritesComponent implements OnInit {
         });
     }
 
-
-    getUsersFavs(): void {
-        this.userRegistrationServices.getUser(user).subscribe((resp: any) => {
-            this.favs = resp.FavoriteMovies;
-            console.log(resp, 'favs');
-            return this.favs;
-        })
-    }
-
-    filterFavorites(): void {
-        this.favs.forEach((movie: any) => {
-            if (this.favs.includes(movie._id)) {
-                this.favorites.push(movie);
-            }
-            console.log(this.favorites, 'favorites');
-        });
-        return this.favorites;
-    }
-
-    openFavorites(id: string): void {
-        this.userRegistrationServices.getFavoriteMovies(id).subscribe((response: any) => {
-            this.favs = response;
-            console.log(this.favs, 'openFavorites');
-            return this.favs
-        })
-    }
+    // openFavorites(id: string): void {
+    //     this.userRegistrationServices.getFavoriteMovies(id).subscribe((response: any) => {
+    //         this.favs = response;
+    //         console.log(this.favs, 'openFavorites');
+    //         return this.favs
+    //     })
+    // }
 
     addToUserFavorites(id: string, Title: string): void {
         this.userRegistrationServices.addToFavoriteMovies(id).subscribe((resp: any) => {
@@ -119,7 +129,7 @@ export class FavoritesComponent implements OnInit {
     }
 
     setFavStatus(id: any): any {
-        if (this.favs.includes(id)) {
+        if (this.favorites.includes(id)) {
             return true;
         } else {
             return false;

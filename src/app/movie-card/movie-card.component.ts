@@ -67,9 +67,9 @@ export class MovieCardComponent {
 
   getUsersFavs(): void {
     this.userRegistrationService.getUser(user).subscribe((resp: any) => {
-      this.favs = resp.FavoriteMovies;
-      // console.log(this.favs, 'favs');
-      return this.favs;
+      this.favorites = resp.FavoriteMovies;
+      // console.log(this.favorites, 'My favorites');
+      return this.favorites;
     })
   }
 
