@@ -117,7 +117,7 @@ export class UserRegistrationService {
 
 
 
-  getFavoriteMovies(): Observable<any> {
+  getFavoriteMovies(id: string): Observable<any> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
     return this.http.get(this.apiUrl + `users/${username}/FavoriteMovies`,

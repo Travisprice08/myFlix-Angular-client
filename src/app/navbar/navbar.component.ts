@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ProfileViewComponent } from '../profile-view/profile-view.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
+import { FavoritesComponent } from '../favorites/favorites.component';
 
 const username = localStorage.getItem('username')
 
@@ -37,8 +38,14 @@ export class NavbarComponent implements OnInit {
         // .catch(console.error);
     }
 
+    // openFavorites(): void {
+    //     this.router.navigate(['favorites'])
+    // }
+
     openFavorites(): void {
-        this.router.navigate(['favorites'])
+        this.dialog.open(FavoritesComponent, {
+            width: '1000px'
+        })
     }
 
     backToHome(): void {

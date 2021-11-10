@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { UserRegistrationService } from '../fetch-api-data.service';
 import { GenreCardComponent } from '../genre-card/genre-card.component';
 import { DirectorCardComponent } from '../director-card/director-card.component';
 import { SynopsisComponent } from '../synopsis/synopsis.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
@@ -28,6 +28,10 @@ export class FavoritesComponent implements OnInit {
         public router: Router,
         public dialog: MatDialog,
         public snackBar: MatSnackBar,
+        @Inject(MAT_DIALOG_DATA)
+        public data: {
+            id: string;
+        }
     ) { }
 
     ngOnInit(): void {
@@ -80,9 +84,17 @@ export class FavoritesComponent implements OnInit {
             if (this.favs.includes(movie._id)) {
                 this.favorites.push(movie);
             }
-            // console.log(this.favorites, 'favorites');
+            console.log(this.favorites, 'favorites');
         });
         return this.favorites;
+    }
+
+    openFavorites(id: string): void {
+        this.userRegistrationServices.getFavoriteMovies(id).subscribe((response: any) => {
+            this.favs = response;
+            console.log(this.favs, 'openFavorites');
+            return this.favs
+        })
     }
 
     addToUserFavorites(id: string, Title: string): void {
