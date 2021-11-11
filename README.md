@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.10.
 
+## Description
+
+This is an Angular app for a film database using the backend from [movie-api]. It is single page and displays all movies. It allows users to view information about the movie, genre, and director. Users can also save and remove movies from their favorites.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
