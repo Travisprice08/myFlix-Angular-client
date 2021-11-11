@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserRegistrationService } from '../fetch-api-data.service';
+import { FetchApiDataService } from '../fetch-api-data.service';
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -17,23 +17,32 @@ export class ProfileViewComponent implements OnInit {
   user: any = {};
 
   constructor(
-    public userRegistrationService: UserRegistrationService,
+    public fetchApiDataService: FetchApiDataService,
     public snackBar: MatSnackBar,
     public dialog: MatDialog,
     public router: Router,
   ) { }
 
+  /**
+   * Gets the user information when component is opened
+   */
   ngOnInit(): void {
     this.getUser();
   }
 
+  /**
+   * Fetches user info from api
+   */
   getUser(): void {
     let user = localStorage.getItem('username');
-    this.userRegistrationService.getUser(user).subscribe((res: any) => {
+    this.fetchApiDataService.getUser(user).subscribe((res: any) => {
       this.user = res;
     });
   }
 
+  /**
+   * Opens dialog to edit user info
+   */
   openEditProfileDialog(): void {
     this.dialog.open(EditProfileComponent, {
       width: '500px'

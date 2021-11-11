@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit, Input } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { UserRegistrationService } from '../fetch-api-data.service';
+import { FetchApiDataService } from '../fetch-api-data.service';
 
 @Component({
     selector: 'app-synopsis',
@@ -11,7 +11,10 @@ export class SynopsisComponent implements OnInit {
 
     constructor(
 
-        public userRegistrationService: UserRegistrationService,
+        /**
+         * uses Inject to get movie info from the movie object
+         */
+        public fetchApiDataService: FetchApiDataService,
         @Inject(MAT_DIALOG_DATA)
         public data: {
             Title: string,

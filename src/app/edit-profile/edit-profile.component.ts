@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserRegistrationService } from '../fetch-api-data.service';
+import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -14,6 +14,9 @@ export class EditProfileComponent implements OnInit {
 
   username: any = {};
 
+  /**
+   * Required fields for updating user info
+   */
   @Input() userData = {
     Username: '',
     Password: '',
@@ -22,15 +25,18 @@ export class EditProfileComponent implements OnInit {
   }
 
   constructor(
-    public userRegistrationService: UserRegistrationService,
+    public fetchApiDataService: FetchApiDataService,
     public dialogRef: MatDialogRef<EditProfileComponent>,
     public snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void { }
 
+  /**
+   * Edits user info
+   */
   editProfile(): void {
-    this.userRegistrationService.editUserProfile(this.userData).subscribe((res) => {
+    this.fetchApiDataService.editUserProfile(this.userData).subscribe((res) => {
       this.dialogRef.close();
       localStorage.setItem('username', res.Username)
       console.log(res)

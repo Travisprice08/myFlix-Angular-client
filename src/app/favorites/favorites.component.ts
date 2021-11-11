@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { UserRegistrationService } from '../fetch-api-data.service';
+import { FetchApiDataService } from '../fetch-api-data.service';
 import { GenreCardComponent } from '../genre-card/genre-card.component';
 import { DirectorCardComponent } from '../director-card/director-card.component';
 import { SynopsisComponent } from '../synopsis/synopsis.component';
@@ -25,7 +25,7 @@ export class FavoritesComponent implements OnInit {
     directors: any = [];
 
     constructor(
-        public userRegistrationServices: UserRegistrationService,
+        public fetchApiDataService: FetchApiDataService,
         public router: Router,
         public dialog: MatDialog,
         public snackBar: MatSnackBar,
@@ -45,7 +45,7 @@ export class FavoritesComponent implements OnInit {
     }
 
     getMovies(): void {
-        this.userRegistrationServices.getAllMovies().subscribe((resp: any) => {
+        this.fetchApiDataService.getAllMovies().subscribe((resp: any) => {
             this.favs = resp;
             console.log(this.favs, 'all movies');
             return this.filterFavorites();
@@ -55,7 +55,7 @@ export class FavoritesComponent implements OnInit {
 
 
     getUsersFavs(): void {
-        this.userRegistrationServices.getUser(user).subscribe((resp: any) => {
+        this.fetchApiDataService.getUser(user).subscribe((resp: any) => {
             this.favorites = resp.FavoriteMovies;
             console.log(this.favorites, 'My favorites');
             return this.favorites;
@@ -100,7 +100,7 @@ export class FavoritesComponent implements OnInit {
     }
 
     // openFavorites(id: string): void {
-    //     this.userRegistrationServices.getFavoriteMovies(id).subscribe((response: any) => {
+    //     this.fetchApiDataService.getFavoriteMovies(id).subscribe((response: any) => {
     //         this.favs = response;
     //         console.log(this.favs, 'openFavorites');
     //         return this.favs
@@ -108,7 +108,7 @@ export class FavoritesComponent implements OnInit {
     // }
 
     addToUserFavorites(id: string, Title: string): void {
-        this.userRegistrationServices.addToFavoriteMovies(id).subscribe((resp: any) => {
+        this.fetchApiDataService.addToFavoriteMovies(id).subscribe((resp: any) => {
             this.snackBar.open(`${Title} has been added to your favorites!`, 'OK', {
                 duration: 3000,
             });
@@ -117,7 +117,7 @@ export class FavoritesComponent implements OnInit {
     }
 
     removeFromUserFavorites(id: string, Title: string): void {
-        this.userRegistrationServices.removeFromFavoriteMovies(id).subscribe((resp: any) => {
+        this.fetchApiDataService.removeFromFavoriteMovies(id).subscribe((resp: any) => {
             this.snackBar.open(`${Title} has been removed from your favorites.`, 'OK', {
                 duration: 3000,
             })

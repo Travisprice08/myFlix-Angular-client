@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { UserRegistrationService } from '../fetch-api-data.service';
+import { FetchApiDataService } from '../fetch-api-data.service';
 
 @Component({
     selector: 'app-genre-card',
@@ -12,7 +12,7 @@ export class GenreCardComponent implements OnInit {
     genres: any = [];
 
     constructor(
-        public userRegistrationService: UserRegistrationService,
+        public fetchApiDataService: FetchApiDataService,
         @Inject(MAT_DIALOG_DATA)
         public data: {
             id: string;
@@ -24,7 +24,7 @@ export class GenreCardComponent implements OnInit {
     }
 
     getGenreInfo(id: string): void {
-        this.userRegistrationService.getGenre(id).subscribe((response: any) => {
+        this.fetchApiDataService.getGenre(id).subscribe((response: any) => {
             console.log(response, 'Genre info')
             this.genres = response;
             // console.log(this.genres);

@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { UserRegistrationService } from '../fetch-api-data.service';
+import { FetchApiDataService } from '../fetch-api-data.service';
 
 @Component({
     selector: 'app-director-card',
@@ -14,7 +14,7 @@ export class DirectorCardComponent implements OnInit {
     constructor(
 
 
-        public userRegistrationService: UserRegistrationService,
+        public fetchApiDataService: FetchApiDataService,
         @Inject(MAT_DIALOG_DATA)
         public data: {
             id: string;
@@ -26,7 +26,7 @@ export class DirectorCardComponent implements OnInit {
     }
 
     getDirectorInfo(id: string): void {
-        this.userRegistrationService.getDirector(id).subscribe((response: any) => {
+        this.fetchApiDataService.getDirector(id).subscribe((response: any) => {
             this.directors = response;
             // console.log(this.directors);
             return this.directors;
