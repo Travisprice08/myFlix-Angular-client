@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.10.
 
-![myFlix-Angular-client](/AngularPage.png)
+![myFlix-Angular-client](src/assets/AngularPage.png)
 
 ## Description
 
